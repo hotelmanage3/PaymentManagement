@@ -19,27 +19,27 @@ public class Payment {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int PaymentId; // 생성
-    private int ReservationNumber; // 받아야 되고
+    private int reservationNumber; // 받아야 되고
     private int PaymentPrice; // 받아야되고
-    private String ReservationStatus; //받아야되고
+    private String reserveStatus; //받아야되고
     private String PaymentStatus;//결재될떄 "Y" 로 셋팅
 
     @PostPersist
     public void onPrePersist() {
 
-        if ("예약".equals(ReservationStatus) ) {
+        if ("reserve".equals(reserveStatus) ) {
             System.out.println("=============결재 승인 처리중=============");
             CompletePayment PaymentCompleted = new CompletePayment();
             BeanUtils.copyProperties(this, PaymentCompleted);
             PaymentStatus = "Y";
             PaymentCompleted.setPaymentId(PaymentId);
             System.out.printf("PaymentId : %d\n",PaymentId);
-            PaymentCompleted.setReservationNumber(ReservationNumber);
-            System.out.printf("ReservationNumber : %d\n",ReservationNumber);
+            PaymentCompleted.setReservationNumber(reservationNumber);
+            System.out.printf("ReservationNumber : %d\n",reservationNumber);
             PaymentCompleted.setPaymentPrice(PaymentPrice);
             System.out.printf("PaymentPrice : %d\n",PaymentPrice);
-            PaymentCompleted.setReservationStatus(ReservationStatus);
-            System.out.printf("ReservationStatus : %s\n",ReservationStatus);
+            PaymentCompleted.setReservationStatus(reserveStatus);
+            System.out.printf("ReservationStatus : %s\n",reserveStatus);
             PaymentCompleted.setPaymentStatus(PaymentStatus);
             System.out.printf("PaymentStatus : %s\n",PaymentStatus);
 
@@ -71,11 +71,11 @@ public class Payment {
     }
 
     public int getReservationNumber() {
-        return ReservationNumber;
+        return reservationNumber;
     }
 
     public void setReservationNumber(int reservationNumber) {
-        ReservationNumber = reservationNumber;
+        reservationNumber = reservationNumber;
     }
 
     public int getPaymentPrice() {
@@ -87,11 +87,11 @@ public class Payment {
     }
 
     public String getReservationStatus() {
-        return ReservationStatus;
+        return reserveStatus;
     }
 
     public void setReservationStatus(String reservationStatus) {
-        ReservationStatus = reservationStatus;
+        reserveStatus = reservationStatus;
     }
 
     public String getPaymentStatus() {
@@ -102,5 +102,3 @@ public class Payment {
         PaymentStatus = paymentStatus;
     }
 }
-
-
