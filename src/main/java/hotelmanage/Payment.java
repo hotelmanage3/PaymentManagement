@@ -21,7 +21,7 @@ public class Payment {
 
     @PostPersist
     public void onPrePersist() {
-
+        System.out.println("=============결재 승인 처리중 11111 =============");
         if ("reserve".equals(ReservationStatus) ) {
             System.out.println("=============결재 승인 처리중=============");
             PaymentCompleted paymentCompleted = new PaymentCompleted();
