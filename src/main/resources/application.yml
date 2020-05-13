@@ -30,7 +30,7 @@ spring:
           brokers: my-kafka.kafka.svc.cluster.local:9092
       bindings:
         input:
-          group: PaymentManagement
+          group: paymentmanagement
           destination: eventTopic
           contentType: application/json
         output:
