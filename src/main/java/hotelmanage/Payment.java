@@ -19,7 +19,7 @@ public class Payment {
     private String ReservationStatus; //받아야되고
     private String PaymentStatus;//결재될떄 "Y" 로 셋팅
 
-    @PrePersist
+    @PostPersist
     public void onPrePersist() {
 
         if ("reserve".equals(ReservationStatus) ) {
